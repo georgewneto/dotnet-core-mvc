@@ -1,0 +1,39 @@
+@model Projeto.RegrasDeNegocio.Models.Estado
+
+@{
+    ViewData["Title"] = "Excluir Estado";
+}
+
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Excluir Estado</h1>
+    
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+        <p class="font-bold">Atenção!</p>
+        <p>Tem certeza que deseja excluir este estado? Esta ação não pode ser desfeita.</p>
+    </div>
+
+    <div class="mb-6">
+        <dl>
+            <div class="bg-gray-50 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.Nome)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Html.DisplayFor(model => model.Nome)</dd>
+            </div>
+            <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.UF)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Html.DisplayFor(model => model.UF)</dd>
+            </div>
+        </dl>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Excluir
+            </button>
+            <a asp-action="Index" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                Voltar para a lista
+            </a>
+        </div>
+    </form>
+</div>

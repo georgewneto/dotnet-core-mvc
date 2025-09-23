@@ -1,0 +1,55 @@
+@model Projeto.RegrasDeNegocio.Models.Estado
+
+@{
+    ViewData["Title"] = "Detalhes do Estado";
+}
+
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Detalhes do Estado</h1>
+
+    <div class="mb-6">
+        <dl>
+            <div class="bg-gray-50 px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.Nome)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Html.DisplayFor(model => model.Nome)</dd>
+            </div>
+            <div class="bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.UF)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">@Html.DisplayFor(model => model.UF)</dd>
+            </div>
+        </dl>
+    </div>
+
+    @if (Model.Cidades != null && Model.Cidades.Any())
+    {
+        <div class="mt-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Cidades</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 border-b text-left">Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cidade in Model.Cidades)
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-2 px-4 border-b">@cidade.Nome</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <div class="mt-6 flex space-x-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Editar
+        </a>
+        <a asp-action="Index" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+            Voltar para a lista
+        </a>
+    </div>
+</div>

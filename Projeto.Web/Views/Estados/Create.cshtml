@@ -1,0 +1,38 @@
+@model Projeto.RegrasDeNegocio.Models.Estado
+
+@{
+    ViewData["Title"] = "Novo Estado";
+}
+
+<div class="bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Novo Estado</h1>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-red-500 mb-4"></div>
+        
+        <div class="mb-4">
+            <label asp-for="Nome" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <input asp-for="Nome" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Nome" class="text-red-500 text-xs"></span>
+        </div>
+        
+        <div class="mb-6">
+            <label asp-for="UF" class="block text-gray-700 text-sm font-bold mb-2"></label>
+            <input asp-for="UF" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="UF" class="text-red-500 text-xs"></span>
+        </div>
+        
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Salvar
+            </button>
+            <a asp-action="Index" class="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800">
+                Voltar para a lista
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

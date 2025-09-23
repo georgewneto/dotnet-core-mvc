@@ -1,0 +1,42 @@
+@model IEnumerable<Projeto.RegrasDeNegocio.Models.Estado>
+
+@{
+    ViewData["Title"] = "Estados";
+}
+
+<div class="bg-white shadow-md rounded-lg p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Estados</h1>
+        <a asp-action="Create" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Novo Estado
+        </a>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="py-2 px-4 border-b text-left">@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th class="py-2 px-4 border-b text-left">@Html.DisplayNameFor(model => model.UF)</th>
+                    <th class="py-2 px-4 border-b text-left">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-2 px-4 border-b">@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td class="py-2 px-4 border-b">@Html.DisplayFor(modelItem => item.UF)</td>
+                        <td class="py-2 px-4 border-b">
+                            <div class="flex space-x-2">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="text-blue-600 hover:text-blue-800">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="text-green-600 hover:text-green-800">Detalhes</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="text-red-600 hover:text-red-800">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

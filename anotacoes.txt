@@ -1,0 +1,6 @@
+dotnet ef migrations add InitialCreate --project Projeto.Infraestrutura --startup-project Projeto.Web 
+
+
+
+dotnet ef migrations add InitialCreate --project Projeto.Infraestrutura --startup-project Projeto.Web
+dotnet ef database update --project Projeto.Infraestrutura --startup-project Projeto.Web
