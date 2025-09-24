@@ -1,0 +1,116 @@
+<Window x:Class="Projeto.WPF.CidadesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projeto.WPF"
+        mc:Ignorable="d"
+        Title="Gerenciar Cidades" Height="650" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!-- Título -->
+        <Border Grid.Row="0" Background="#A8508A" Padding="15">
+            <TextBlock Text="Gerenciar Cidades" 
+                      FontSize="20" 
+                      FontWeight="Bold" 
+                      Foreground="White" 
+                      HorizontalAlignment="Center" />
+        </Border>
+        
+        <!-- Área Principal -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="320" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Lista de Cidades -->
+            <GroupBox Grid.Column="0" Header="Lista de Cidades" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Filtro por Estado -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Filtrar por Estado:" VerticalAlignment="Center" Margin="0,0,5,0" />
+                        <ComboBox Name="cmbEstadoFiltro" 
+                                 Width="200" 
+                                 DisplayMemberPath="Nome"
+                                 SelectedValuePath="Id"
+                                 SelectionChanged="CmbEstadoFiltro_SelectionChanged" />
+                        <Button Content="Todos" Margin="5,0,0,0" Click="BtnTodosEstados_Click" />
+                    </StackPanel>
+                    
+                    <!-- Barra de Busca -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Buscar:" VerticalAlignment="Center" Margin="0,0,5,0" />
+                        <TextBox Name="txtBusca" Width="200" TextChanged="TxtBusca_TextChanged" />
+                        <Button Content="Limpar" Margin="5,0,0,0" Click="BtnLimparBusca_Click" />
+                    </StackPanel>
+                    
+                    <!-- DataGrid -->
+                    <DataGrid Grid.Row="2" Name="dgCidades" 
+                             AutoGenerateColumns="False" 
+                             CanUserAddRows="False"
+                             SelectionMode="Single"
+                             SelectionChanged="DgCidades_SelectionChanged"
+                             Margin="5">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                            <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*" />
+                            <DataGridTextColumn Header="Estado" Binding="{Binding Estado.Nome}" Width="150" />
+                            <DataGridTextColumn Header="UF" Binding="{Binding Estado.UF}" Width="60" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+            
+            <!-- Separador -->
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            
+            <!-- Formulário -->
+            <GroupBox Grid.Column="2" Header="Dados da Cidade" Margin="10,0,0,0">
+                <StackPanel Margin="10">
+                    <!-- ID (somente leitura) -->
+                    <TextBlock Text="ID:" Margin="0,0,0,5" />
+                    <TextBox Name="txtId" IsReadOnly="True" Background="#F0F0F0" Margin="0,0,0,10" />
+                    
+                    <!-- Nome -->
+                    <TextBlock Text="Nome:" Margin="0,0,0,5" />
+                    <TextBox Name="txtNome" MaxLength="100" Margin="0,0,0,10" />
+                    
+                    <!-- Estado -->
+                    <TextBlock Text="Estado:" Margin="0,0,0,5" />
+                    <ComboBox Name="cmbEstado" 
+                             DisplayMemberPath="Nome"
+                             SelectedValuePath="Id"
+                             Margin="0,0,0,20" />
+                    
+                    <!-- Botões -->
+                    <Button Name="btnNovo" Content="Novo" Click="BtnNovo_Click" Margin="0,0,0,5" />
+                    <Button Name="btnSalvar" Content="Salvar" Click="BtnSalvar_Click" Margin="0,0,0,5" />
+                    <Button Name="btnEditar" Content="Editar" Click="BtnEditar_Click" Margin="0,0,0,5" />
+                    <Button Name="btnExcluir" Content="Excluir" Click="BtnExcluir_Click" Margin="0,0,0,5" />
+                    <Button Name="btnCancelar" Content="Cancelar" Click="BtnCancelar_Click" Margin="0,0,0,5" />
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        
+        <!-- Rodapé -->
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock Name="lblStatus" Text="Pronto" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
