@@ -1,0 +1,29 @@
+﻿<ui:FluentWindow x:Class="Projeto.WPF_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projeto.WPF_UI"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="Projeto WPF UI" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Cadastros" FontSize="22" FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ui:Button x:Name="MenuEstados" Content="Estados" Click="MenuEstados_Click" Appearance="Primary" Margin="0,0,10,0"/>
+            <ui:Button x:Name="MenuCidades" Content="Cidades" Click="MenuCidades_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <ui:Button x:Name="MenuSair" Content="Sair" Click="MenuSair_Click" Appearance="Danger"/>
+        </StackPanel>
+    </Grid>
+</ui:FluentWindow>
